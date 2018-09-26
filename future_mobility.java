@@ -39,10 +39,12 @@ public class Solution {
      * moved to the left. How to be sure? Well, if we have more exceeding stones than holes to the left
      * we are sure the exceeding ones have to be moved to the right and vice versa.
      * During the pass we move the stones step by step (1 or 2 indices) until they are all placed.
+     *
+     * Pay attention to use long instead of int to avoid errors with big numbers. 
      */
     public int solution(int[] A, int[] B) {
 
-        int count = 0;
+        long count = 0;
         Integer[] DELTA = new Integer[A.length];
         int sum = 0;
 
@@ -60,11 +62,11 @@ public class Solution {
         reverseArray(DELTA);
         count += pass(DELTA);
 
-        return count % 1000000007;
+        return (int)(count % 1000000007);
     }
 
-    private int pass(Integer[] DELTA) {
-        int count = 0;
+    private long pass(Integer[] DELTA) {
+        long count = 0;
         int exceedingStones = 0;
         for(int i=0; i<DELTA.length; i++) {
             if(exceedingStones + DELTA[i] > 0) {
