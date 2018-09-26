@@ -1,2 +1,2 @@
-# codility_challanges_and_lessons
+# Codility
 Codility solution for lessons and challanges
