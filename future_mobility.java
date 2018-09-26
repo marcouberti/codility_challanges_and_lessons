@@ -45,11 +45,11 @@ public class Solution {
     public int solution(int[] A, int[] B) {
 
         long count = 0;
-        Integer[] DELTA = new Integer[A.length];
+        Long[] DELTA = new Long[A.length];
         int sum = 0;
 
         for(int i=0; i<A.length; i++) {
-            DELTA[i] = A[i] - B[i];
+            DELTA[i] = (long)A[i] - (long)B[i];
             sum += DELTA[i];
         }
 
@@ -65,18 +65,18 @@ public class Solution {
         return (int)(count % 1000000007);
     }
 
-    private long pass(Integer[] DELTA) {
+    private long pass(Long[] DELTA) {
         long count = 0;
-        int exceedingStones = 0;
+        long exceedingStones = 0;
         for(int i=0; i<DELTA.length; i++) {
             if(exceedingStones + DELTA[i] > 0) {
-                int stones = exceedingStones + DELTA[i];
+                long stones = exceedingStones + DELTA[i];
                 if(i+1 < DELTA.length && DELTA[i+1] < 0) {
                     if(stones + DELTA[i+1] >= 0) {
                         count += -DELTA[i+1];
                         stones += DELTA[i+1];
                         DELTA[i] += DELTA[i+1];
-                        DELTA[i+1] = 0;
+                        DELTA[i+1] = 0L;
                     }else {
                         DELTA[i] -= stones;
                         DELTA[i+1] += stones;
@@ -97,8 +97,8 @@ public class Solution {
         return count;
     }
 
-    private void reverseArray(Integer[] arr) {
-        List<Integer> list = Arrays.asList(arr);
+    private void reverseArray(Long[] arr) {
+        List<Long> list = Arrays.asList(arr);
         Collections.reverse(list);
         list.toArray(arr);
     }
